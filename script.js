@@ -6,8 +6,6 @@ window.dataPegawai = [];
 const API_URL =
   "https://script.google.com/macros/s/AKfycbwQQBnyw7WMsx5IGWrWhozu5tTpXq7esFHkRVm2H6V1Sa5Y9RDsiDOu669roHMyoNmK/exec";
 
-const SECRET = "absen_dprd_2026";
-
 // ===============================
 // PILIH BAGIAN
 // ===============================
@@ -153,27 +151,27 @@ async function uploadWithRetry(data, retry = 3) {
 // SUBMIT ABSEN
 // ===============================
 async function submitAbsen() {
-  // 🔒 VALIDASI HARI & JAM (WIB)
-  const now = new Date();
+  // // 🔒 VALIDASI HARI & JAM (WIB)
+  // const now = new Date();
 
-  const jakartaTime = new Date(
-    now.toLocaleString("en-US", { timeZone: "Asia/Jakarta" }),
-  );
+  // const jakartaTime = new Date(
+  //   now.toLocaleString("en-US", { timeZone: "Asia/Jakarta" }),
+  // );
 
-  const day = jakartaTime.getDay(); // 1 = Senin
-  const hour = jakartaTime.getHours();
+  // const day = jakartaTime.getDay(); // 1 = Senin
+  // const hour = jakartaTime.getHours();
 
-  // hanya Senin
-  if (day !== 1) {
-    alert("Absen hanya bisa dilakukan hari Senin");
-    return;
-  }
+  // // hanya Senin
+  // if (day !== 1) {
+  //   alert("Absen hanya bisa dilakukan hari Senin");
+  //   return;
+  // }
 
-  // hanya jam 07:00 - 08:00
-  if (hour < 7 || hour >= 8) {
-    alert("Absen hanya bisa pukul 07:00 - 08:00 WIB");
-    return;
-  }
+  // // hanya jam 07:00 - 08:00
+  // if (hour < 7 || hour >= 8) {
+  //   alert("Absen hanya bisa pukul 07:00 - 08:00 WIB");
+  //   return;
+  // }
 
   const btn = document.querySelector("#formAbsen .btn-submit");
   if (btn.disabled) return;
@@ -268,7 +266,6 @@ async function submitAbsen() {
     const result = await uploadWithRetry({
       image: base64,
       fileName: fileName,
-      secret: SECRET,
     });
 
     if (!result || !result.url) {
